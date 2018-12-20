@@ -33,7 +33,7 @@ jobs:
 
 workflows:
   version: 2
-  init-and-build:
+  test-then-build:
     jobs:
       - test-docker
       - build-docker-image:
