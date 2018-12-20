@@ -12,6 +12,7 @@ jobs:
           command: |
             apk update
             apk add docker
+            apk add service
       - run: docker --version
       - run: 
           name: Run docker
