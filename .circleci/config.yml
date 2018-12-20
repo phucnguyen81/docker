@@ -17,6 +17,7 @@ jobs:
           command: |
             apk add openrc # openrc includes service
             apk add shadow # shadow includes usermod
+            apk add systemctl
             groupadd docker
             usermod -aG docker $(whoami)
       - run: 
