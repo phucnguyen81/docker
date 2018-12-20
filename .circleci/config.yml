@@ -12,7 +12,8 @@ jobs:
           command: |
             apk update
             apk add docker
-            apk add service
+            #apk add service
+            apk add openrc --no-cache
       - run: docker --version
       - run: 
           name: Run docker
