@@ -36,6 +36,11 @@ jobs:
         - run:
             name: See the image
             command: docker image ls
+        - run:
+            name: Run the image
+            command: |
+                # map port 4000 to the exposed port 80 (see Dockerfile)
+                docker run -p 4000:80 friendlyhello
 
 workflows:
     version: 2
