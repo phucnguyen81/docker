@@ -1,41 +1,44 @@
 version: 2.1
 
 jobs:
-  test-docker:
-    docker:
-      - image: docker
-    steps:
-      - run: 
-          name: Test docker is available
-          command: docker --version
-      - setup_remote_docker
-      - run:
-          name: Test remote docker is working
-          command: docker info
-      - run:
-          name: Run docker hello-world
-          command: docker run hello-world
-      - run:
-          name: See docker hello-world image
-          command: docker image ls
-      - run:
-          name: See docker container that ran the hello-world image
-          command: docker container ls --all
-  build-docker-image:
-    docker:
-      - image: docker
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run:
-          name: See the checked out code
-          command: ls -a
+    test-docker:
+        docker:
+        - image: docker
+        steps:
+        - run: 
+            name: Test docker is available
+            command: docker --version
+        - setup_remote_docker
+        - run:
+            name: Test remote docker is working
+            command: docker info
+        - run:
+            name: Run docker hello-world
+            command: docker run hello-world
+        - run:
+            name: See docker hello-world image
+            command: docker image ls
+        - run:
+            name: See docker container that ran the hello-world image
+            command: docker container ls --all
+    build-docker-image:
+        docker:
+        - image: docker
+        steps:
+        - setup_remote_docker
+        - checkout
+        - run:
+            name: List checked out code
+            command: ls -a
+        - run:
+            name: Build docker image
+            command: docker build -t friendlyhello .
 
 workflows:
-  version: 2
-  test-then-build:
-    jobs:
-      - test-docker
-      - build-docker-image:
-          requires:
-            - test-docker
+    version: 2
+    test-then-build:
+        jobs:
+        - test-docker
+        - build-docker-image:
+            requires:
+                - test-docker
