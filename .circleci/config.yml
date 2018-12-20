@@ -8,3 +8,4 @@ jobs:
       - checkout
       - run: echo $(pwd)
       - run: docker --version
+      - run: docker run hello-world
