@@ -26,6 +26,6 @@ jobs:
           command: |
             # add current user to docker group
             usermod -aG docker $(whoami)
-            service docker stop
-            service docker start
+            # service docker stop
+            # service docker start
             docker run hello-world
