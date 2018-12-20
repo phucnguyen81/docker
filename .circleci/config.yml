@@ -17,19 +17,12 @@ jobs:
           command: |
             apk add openrc # openrc includes service
             apk add shadow # shadow includes usermod
+            usermod -aG docker $(whoami)
       - run: 
           name: Install docker
           command: |
             apk add docker
             docker --version
-      - run:
-          name: Allow to run docker
-          command: |
-            # add current user to docker group
-            usermod -aG docker $(whoami)
-            service docker stop
-            # service docker start
-            service docker start
       - run:
           name: Run docker hello-world
           command: docker run hello-world
