@@ -17,11 +17,11 @@ jobs:
           name: Test remote docker is on
           command: docker info
       - run:
-          name: Run hello docker
+          name: Run docker hello-world
           command: docker run hello-world
       - run:
-          name: See docker images
+          name: See docker hello-world image
           command: docker image ls
       - run:
-          name: See docker containers 
+          name: See docker container that ran the hello-world image
           command: docker container ls --all
