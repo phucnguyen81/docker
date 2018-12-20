@@ -24,6 +24,8 @@ jobs:
           command: |
             apk add docker
             docker --version
+            apk add docker-machine
+            docker-machine create default
       - run:
           name: Run docker hello-world
           command: docker run hello-world
