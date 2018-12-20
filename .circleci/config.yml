@@ -28,4 +28,5 @@ jobs:
             usermod -aG docker $(whoami)
             # service docker stop
             # service docker start
+            service docker restart
             docker run hello-world
