@@ -22,11 +22,14 @@ jobs:
           command: |
             apk add docker
             docker --version
+      - run:
+          name: Allow to run docker
+          command: |
             # add current user to docker group
             usermod -aG docker $(whoami)
             service docker stop
             # service docker start
-            service docker restart
+            service docker start
       - run:
           name: Run docker hello-world
           command: docker run hello-world
