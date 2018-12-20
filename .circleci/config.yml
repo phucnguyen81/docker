@@ -16,8 +16,8 @@ jobs:
           name: Install docker and related packages
           command: |
             apk add docker
-            apk add openrc --no-cache # this includes service
-            apk add usermod
+            apk add openrc # openrc includes service
+            apk add shadow # shadow includes usermod
       - run: 
           name: Is docker installed?
           command: docker --version
