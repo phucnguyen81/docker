@@ -44,7 +44,7 @@ jobs:
         - run:
             name: Call the app deployed inside image
             command: |
-                apt install curl
+                apk add curl
                 curl http://localhost:4000
 
 workflows:
