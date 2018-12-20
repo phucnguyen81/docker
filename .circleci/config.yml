@@ -3,7 +3,7 @@ version: 2.1
 jobs:
     test-docker:
         docker:
-        - image: docker
+        - image: docker:18.09
         steps:
         - run: 
             name: Test docker is available
@@ -43,7 +43,9 @@ jobs:
                 docker run -d -p 4000:80 friendlyhello
         - run:
             name: Call the app deployed inside image
-            command: curl http://localhost:4000
+            command: |
+                apt install curl
+                curl http://localhost:4000
 
 workflows:
     version: 2
