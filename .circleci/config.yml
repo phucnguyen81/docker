@@ -37,10 +37,10 @@ jobs:
             name: See the image
             command: docker image ls
         - run:
-            name: Run the image
+            name: Run the image in detached mode
             command: |
                 # map port 4000 to the exposed port 80 (see Dockerfile)
-                docker run -p 4000:80 friendlyhello
+                docker run -d -p 4000:80 friendlyhello
 
 workflows:
     version: 2
