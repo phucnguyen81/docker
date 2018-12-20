@@ -17,7 +17,6 @@ jobs:
           command: |
             apk add openrc # openrc includes service
             apk add shadow # shadow includes usermod
-            apk add systemctl
             groupadd docker
             usermod -aG docker $(whoami)
       - run: 
@@ -27,7 +26,7 @@ jobs:
             docker --version
             # not sure why yet :)
             echo "cgroup /sys/fs/cgroup cgroup defaults 0 0" >> /etc/fstab
-            systemctl start docker
+            rc-serice docker restart
       - run:
           name: Run docker hello-world
           command: docker run hello-world
