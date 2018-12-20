@@ -26,7 +26,7 @@ jobs:
             docker --version
             # not sure why yet :)
             echo "cgroup /sys/fs/cgroup cgroup defaults 0 0" >> /etc/fstab
-            rc-serice docker restart
+            rc-service docker restart
       - run:
           name: Run docker hello-world
           command: docker run hello-world
