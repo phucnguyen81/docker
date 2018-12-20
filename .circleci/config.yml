@@ -6,18 +6,25 @@ jobs:
       - image: alpine:3.8
     steps:
       - checkout
-      - run: echo $(pwd)
+      - run: 
+          name: Current working directory
+          command: echo $(pwd)
       - run:
-          name: Install docker
+          name: Update package index
+          command: apk update
+      - run:
+          name: Install docker and related packages
           command: |
-            apk update
             apk add docker
-            #apk add service
-            apk add openrc --no-cache
-      - run: docker --version
+            apk add openrc --no-cache # this includes service
+      - run: 
+          name: Is docker installed?
+          command: docker --version
       - run: 
           name: Run docker
           command: |
-            #service docker start
-            #docker run --name alpine-docker -p 2375:2375 --privileged -d danielguerra/alpine-docker
+            # add current user to docker group
+            usermod -aG docker $(whoami)
+            service docker stop
+            service docker start
             docker run hello-world
