@@ -3,14 +3,19 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: danielguerra/alpine-docker
+      - image: ubuntu
     steps:
       - checkout
-      - run: echo $(pwd)
-      - run: docker --version
       - run: 
-          name: Run docker
+          name: Current directory
+          command: echo $(pwd)
+      - run: 
+          name: Allow apt to use packages over https
           command: |
-            dockerd
+            apt-get install \
+              apt-transport-https \
+              ca-certificates \
+              curl \
+              software-properties-common
             #docker run --name alpine-docker -p 2375:2375 --privileged -d danielguerra/alpine-docker
             #docker run hello-world
