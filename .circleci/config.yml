@@ -15,12 +15,14 @@ jobs:
       - setup_remote_docker
       - run:
           name: Test remote docker is on
-          command: |
-            docker info
-            docker container ls
+          command: docker info
       - run:
-          name: Hello docker
+          name: Run hello docker
           command: |
             docker run hello-world
-            docker image ls # should see the hello-world image
-            docker container ls --all # should see the container that ran hello-world
+
+            echo "Docker Images"
+            docker image ls
+
+            echo "Docker Containers"
+            docker container ls --all
