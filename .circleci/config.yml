@@ -20,4 +20,7 @@ jobs:
             docker container ls
       - run:
           name: Hello docker
-          command: docker run hello-world
+          command: |
+            docker run hello-world
+            docker image ls # should see the hello-world image
+            docker container ls --all # should see the container that ran hello-world
