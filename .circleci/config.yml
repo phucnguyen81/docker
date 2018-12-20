@@ -33,6 +33,9 @@ jobs:
         - run:
             name: Build docker image
             command: docker build -t friendlyhello .
+        - run:
+            name: See the image
+            command: docker image ls
 
 workflows:
     version: 2
