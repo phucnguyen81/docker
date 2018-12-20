@@ -3,30 +3,16 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: alpine:3.8
+      - image: docker
     steps:
       - checkout
       - run: 
           name: Current working directory
           command: echo $(pwd)
-      - run:
-          name: Update package index
-          command: apk update
-      - run:
-          name: Install required commands 
-          command: |
-            apk add openrc # openrc includes service
-            apk add shadow # shadow includes usermod
       - run: 
           name: Install docker
           command: |
-            groupadd docker
-            usermod -aG docker $(whoami)
-            apk add docker
             docker --version
-            # not sure why yet :)
-            echo "cgroup /sys/fs/cgroup cgroup defaults 0 0" >> /etc/fstab
-            rc-service docker start
             docker container ls
       # - run:
       #     name: Run docker hello-world
