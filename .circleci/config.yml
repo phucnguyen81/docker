@@ -18,11 +18,10 @@ jobs:
           command: docker info
       - run:
           name: Run hello docker
-          command: |
-            docker run hello-world
-
-            echo "Docker Images"
-            docker image ls
-
-            echo "Docker Containers"
-            docker container ls --all
+          command: docker run hello-world
+      - run:
+          name: See docker images
+          command: docker image ls
+      - run:
+          name: See docker containers 
+          command: docker container ls --all
