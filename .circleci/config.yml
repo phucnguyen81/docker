@@ -17,11 +17,11 @@ jobs:
           command: |
             apk add openrc # openrc includes service
             apk add shadow # shadow includes usermod
-            groupadd docker
-            usermod -aG docker $(whoami)
       - run: 
           name: Install docker
           command: |
+            groupadd docker
+            usermod -aG docker $(whoami)
             apk add docker
             docker --version
             # not sure why yet :)
