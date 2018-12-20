@@ -17,6 +17,7 @@ jobs:
           command: |
             apk add docker
             apk add openrc --no-cache # this includes service
+            apk add usermod
       - run: 
           name: Is docker installed?
           command: docker --version
