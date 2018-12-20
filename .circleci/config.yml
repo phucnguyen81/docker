@@ -1,0 +1,9 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: danielguerra/alpine-docker
+    steps:
+      - checkout
+      - run: echo $(pwd)
