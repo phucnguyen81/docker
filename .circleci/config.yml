@@ -11,7 +11,7 @@ jobs:
           command: echo $(pwd)
       - run: 
           name: Test docker is installed
-          command: docker --version
+          command: docker info
       - setup_remote_docker
       - run:
           name: Test remote docker is on
