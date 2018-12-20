@@ -18,6 +18,6 @@ jobs:
       - run: 
           name: Run docker
           command: |
-            service docker start
+            #service docker start
             #docker run --name alpine-docker -p 2375:2375 --privileged -d danielguerra/alpine-docker
-            #docker run hello-world
+            docker run hello-world
