@@ -10,12 +10,14 @@ jobs:
           name: Current working directory
           command: echo $(pwd)
       - run: 
-          name: Test docker is installed
-          command: docker info
+          name: Test docker is available
+          command: docker --version
       - setup_remote_docker
       - run:
           name: Test remote docker is on
-          command: docker container ls
+          command: |
+            docker info
+            docker container ls
       - run:
           name: Hello docker
           command: docker run hello-world
