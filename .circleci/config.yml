@@ -5,7 +5,6 @@ jobs:
     docker:
       - image: docker
     steps:
-      - checkout
       - run: 
           name: Current working directory
           command: echo $(pwd)
@@ -14,7 +13,7 @@ jobs:
           command: docker --version
       - setup_remote_docker
       - run:
-          name: Test remote docker is on
+          name: Test remote docker is working
           command: docker info
       - run:
           name: Run docker hello-world
@@ -25,3 +24,7 @@ jobs:
       - run:
           name: See docker container that ran the hello-world image
           command: docker container ls --all
+      - checkout
+      - run:
+          name: See the code
+          command: ls .
