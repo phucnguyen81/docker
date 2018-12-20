@@ -3,18 +3,19 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: docker
     steps:
       - checkout
       - run: 
           name: Current working directory
           command: echo $(pwd)
-      - setup_remote_docker
       - run: 
-          name: Try docker
-          command: |
-            docker --version
-            docker container ls
-      # - run:
-      #     name: Run docker hello-world
-      #     command: docker run hello-world
+          name: Test docker is installed
+          command: docker --version
+      - setup_remote_docker
+      - run:
+          name: Test remote docker is on
+          command: docker container ls
+      - run:
+          name: Hello docker
+          command: docker run hello-world
