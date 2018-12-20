@@ -13,20 +13,20 @@ jobs:
           name: Update package index
           command: apk update
       - run:
-          name: Install docker and related packages
+          name: Install required commands 
           command: |
-            apk add docker
             apk add openrc # openrc includes service
             apk add shadow # shadow includes usermod
       - run: 
-          name: Is docker installed?
-          command: docker --version
-      - run: 
-          name: Run docker
+          name: Install docker
           command: |
+            apk add docker
+            docker --version
             # add current user to docker group
             usermod -aG docker $(whoami)
-            # service docker stop
+            service docker stop
             # service docker start
             service docker restart
-            docker run hello-world
+      - run:
+          name: Run docker hello-world
+          command: docker run hello-world
