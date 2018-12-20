@@ -8,4 +8,8 @@ jobs:
       - checkout
       - run: echo $(pwd)
       - run: docker --version
-      - run: docker run hello-world
+      - run: 
+          name: Run docker
+          command: |
+            docker run --name alpine-docker -p 2375:2375 --privileged -d danielguerra/alpine-docker
+            #docker run hello-world
