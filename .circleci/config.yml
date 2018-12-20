@@ -27,4 +27,4 @@ jobs:
       - checkout
       - run:
           name: See the code
-          command: ls .
+          command: ls -a
