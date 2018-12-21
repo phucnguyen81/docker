@@ -30,7 +30,7 @@ jobs:
         - setup_remote_docker
         - checkout
         - run:
-            name: Show current working directory
+            name: Show the checked out workspace
             command: |
                 echo $(pwd)
                 ls -a
@@ -42,7 +42,7 @@ jobs:
         - run:
             name: Test run the image
             command: |
-                # map port 4000 to the exposed port 80 (see Dockerfile)
+                # map port 4000 to the exposed port 8080 (see Dockerfile)
                 docker run -d -p 8080:8080 --name friendlyhello friendlyhello
                 # test the app in running
                 # use the exposed port 8080 since curl is run inside the container
@@ -51,7 +51,7 @@ jobs:
             name: Publish latest image to my docker hub
             command: |
                 set -o nounset
-                # login my docker hub account
+                # login docker hub
                 docker login --username "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD"
                 # tag latest image
                 docker tag friendlyhello phucknguyen/friendlyhello
@@ -64,7 +64,7 @@ jobs:
         steps:
         - setup_remote_docker
         - run:
-            name: Test the app is running inside container
+            name: Test run the image
             command: |
                 docker run -d -p 8080:8080 --name friendlyhello phucknguyen/friendlyhello
                 # test the app in running
