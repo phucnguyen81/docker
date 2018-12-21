@@ -13,11 +13,12 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 # Install needed commands
 RUN apt-get update && apt-get install -y curl
 
-# Make port 80 available to the world outside this container
-EXPOSE 80
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
 
 # Define environment variable
-ENV NAME World
+ENV PYTHON_APP_PORT 8080
 
 # Run app.py when the container launches
+# TODO pass port into app.py
 CMD ["python", "app.py"]

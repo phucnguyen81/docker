@@ -38,14 +38,13 @@ jobs:
                 docker build -t friendlyhello .
                 docker image ls
         - run:
-            name: Run the image in detached mode
+            name: Test run the image in detached mode
             command: |
                 # map port 4000 to the exposed port 80 (see Dockerfile)
-                docker run -d -p 4000:80 --name friendlyhello friendlyhello
+                docker run -d -p 8080:8080 --name friendlyhello friendlyhello
                 # test the app in running
-                # use the exposed port 80 since curl is run inside the container
-                docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:80 || echo 'port 80 failed'
-                docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:4000 || echo 'port 4000 failed'
+                # use the exposed port 8080 since curl is run inside the container
+                docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:8080
         - run:
             name: Login to my docker hub
             command: |
