@@ -75,6 +75,7 @@ jobs:
         docker:
         - image: docker:18.09
         steps:
+        - checkout
         - setup_remote_docker
         - run:
             name: Init service
