@@ -80,6 +80,7 @@ jobs:
             name: Init service
             command: |
                 docker swarm init
+                docker stack deploy -c docker-compose.yml getstartedlab
 
 workflows:
     version: 2
