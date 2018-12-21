@@ -42,11 +42,10 @@ jobs:
                 # map port 4000 to the exposed port 80 (see Dockerfile)
                 docker run -d -p 4000:80 --name friendlyhello friendlyhello
         - run:
-            name: Call the app deployed inside image
+            name: Test the app in running inside the container
             command: |
-                apk add curl
+                # use the exposed port 80 since the command is run inside the container
                 docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:80
-                #curl http://localhost:4000
 
 workflows:
     version: 2
