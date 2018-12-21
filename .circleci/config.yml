@@ -40,12 +40,13 @@ jobs:
             name: Run the image in detached mode
             command: |
                 # map port 4000 to the exposed port 80 (see Dockerfile)
-                docker run -d -p 4000:80 friendlyhello
+                docker run -d -p 4000:80 --name friendlyhello friendlyhello
         - run:
             name: Call the app deployed inside image
             command: |
                 apk add curl
-                curl http://localhost:4000
+                docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:4000
+                #curl http://localhost:4000
 
 workflows:
     version: 2
