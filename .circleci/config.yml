@@ -65,6 +65,7 @@ jobs:
         # - image: phucknguyen/friendlyhello
         - image: docker:18.09
         steps:
+        - setup_remote_docker
         - run:
             name: Test the app is running inside container
             command: |
