@@ -49,8 +49,9 @@ jobs:
         - run:
             name: Login to my docker hub
             command: |
+                set -o nounset
                 # login my docker hub account
-                docker login --username '$DOCKER_USERNAME' --password '$DOCKER_PASSWORD'
+                docker login --username "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD"
 
     test-image-pushed:
         docker:
