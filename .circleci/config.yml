@@ -45,12 +45,22 @@ jobs:
                 # test the app in running
                 # use the exposed port 80 since curl is run inside the container
                 docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:80
+    test-image-pushed:
+        docker:
+        - image: phucknguyen/friendlyhello:0.0.1
+        steps:
+        - run:
+            name: Test the app is run inside container
+            command: |
+                apk add curl
+                curl --retry 10 --retry-connrefused http://localhost:80
 
 workflows:
     version: 2
-    test-then-build:
+    test-and-build:
         jobs:
         - test-docker
         - build-docker-image:
             requires:
                 - test-docker
+        - test-image-pushed
