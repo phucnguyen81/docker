@@ -1,0 +1,24 @@
+version: "3"
+services:
+  web:
+    image: phucknguyen/friendlyhello
+    deploy:
+      # run 5 intances of the image
+      replicas: 5
+      resources:
+        limits:
+          # limit on each instance resource
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        # always restart failed instances
+        condition: on-failure
+    ports:
+      # map port 4000 on host to port 8080 on instance
+      - "4000:8080"
+    networks:
+      # launch on a load-balanced network
+      - webnet
+networks:
+  # use all default settings
+  webnet:
