@@ -11,7 +11,7 @@ COPY . /app
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Install needed commands
-RUN apt-get install curl
+RUN apt-get update && apt-get install curl
 
 # Make port 80 available to the world outside this container
 EXPOSE 80
