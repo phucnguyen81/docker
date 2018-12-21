@@ -47,15 +47,17 @@ jobs:
                 docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:80
     test-image-pushed:
         docker:
+        - image: byrnedo/alpine-curl
         - image: phucknguyen/friendlyhello:0.0.2
         steps:
         - run:
             name: Test the app is run inside container
             command: |
-                ls /app/
-                cd /app/
-                python app.py
-                #curl --retry 10 --retry-connrefused http://localhost:80
+                # ls /app/
+                # cd /app/
+                # python app.py
+                curl --retry 10 --retry-connrefused http://localhost:4000
+                curl --retry 10 --retry-connrefused http://localhost:80
 
 workflows:
     version: 2
