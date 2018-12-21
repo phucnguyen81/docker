@@ -84,10 +84,10 @@ jobs:
                 docker stack deploy -c docker-compose.yml getstartedlab
         - run:
             name: Show service stack
-            command: |
-                docker service ls
-                docker service ps getstartedlab_web
-                docker container ls -q
+            command: docker service ls
+        - run:
+            name: Show services in the stack
+            command: docker service ps getstartedlab_web
 
 workflows:
     version: 2
