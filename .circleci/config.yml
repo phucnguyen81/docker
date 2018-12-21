@@ -67,7 +67,9 @@ jobs:
         - run:
             name: Test the app is running inside container
             command: |
-                curl --retry 10 --retry-connrefused http://localhost:8080
+                curl --retry 10 --retry-connrefused http://localhost:8080 || echo "Failed to connect 8080"
+                cd /app/
+                python app.py
 
 workflows:
     version: 2
