@@ -71,6 +71,16 @@ jobs:
                 # use the exposed port 8080 since exec runs the command inside the container
                 docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:8080
 
+    test-service:
+        docker:
+        - image: docker:18.09
+        steps:
+        - setup_remote_docker
+        - run:
+            name: Init service
+            command: |
+                docker swarm init
+
 workflows:
     version: 2
     test-and-build:
@@ -82,3 +92,6 @@ workflows:
         - test-latest-image:
             requires:
                 - build-docker-image
+        - test-service:
+            requires:
+                - test-latest-image
