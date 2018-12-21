@@ -1,6 +1,7 @@
 version: 2.1
 
 jobs:
+
     test-docker:
         docker:
         - image: docker:18.09
@@ -21,6 +22,7 @@ jobs:
         - run:
             name: See docker container that ran the hello-world image
             command: docker container ls --all
+
     build-docker-image:
         docker:
         - image: docker
@@ -46,7 +48,7 @@ jobs:
                 # use the exposed port 8080 since curl is run inside the container
                 docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:8080
         - run:
-            name: Login to my docker hub
+            name: Publish latest image to my docker hub
             command: |
                 set -o nounset
                 # login my docker hub account
@@ -56,19 +58,15 @@ jobs:
                 # push latest image
                 docker push phucknguyen/friendlyhello
 
-    test-image-pushed:
+    test-latest-image:
         docker:
         - image: byrnedo/alpine-curl
-        - image: phucknguyen/friendlyhello:0.0.2
+        - image: phucknguyen/friendlyhello
         steps:
         - run:
             name: Test the app is run inside container
             command: |
-                # ls /app/
-                # cd /app/
-                # python app.py
-                curl --retry 10 --retry-connrefused http://localhost:80 || echo "80 failed"
-                curl --retry 10 --retry-connrefused http://localhost:4000 || echo "4000 failed"
+                curl --retry 10 --retry-connrefused http://localhost:8080
 
 workflows:
     version: 2
@@ -78,4 +76,6 @@ workflows:
         - build-docker-image:
             requires:
                 - test-docker
-        - test-image-pushed
+        - test-latest-image:
+            requires:
+                - build-docker-image
