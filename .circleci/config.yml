@@ -62,16 +62,13 @@ jobs:
         docker:
         #- image: byrnedo/alpine-curl
         # TODO the container job gets cancelled, maybe because of the app launched on 8080?
-        - image: phucknguyen/friendlyhello
+        # - image: phucknguyen/friendlyhello
+        - image: docker:18.09
         steps:
         - run:
             name: Test the app is running inside container
-            working_directory: /app/
-            command: python app.py
-            background: true
-        - run:
-            name: Test the app is running on 8080
-            command: curl http://localhost:8080
+            command: |
+                docker run -d -p 8080:8080 phucknguyen/friendlyhello
 
 workflows:
     version: 2
