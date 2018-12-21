@@ -38,7 +38,7 @@ jobs:
                 docker build -t friendlyhello .
                 docker image ls
         - run:
-            name: Test run the image in detached mode
+            name: Test run the image
             command: |
                 # map port 4000 to the exposed port 80 (see Dockerfile)
                 docker run -d -p 8080:8080 --name friendlyhello friendlyhello
@@ -51,6 +51,10 @@ jobs:
                 set -o nounset
                 # login my docker hub account
                 docker login --username "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD"
+                # tag latest image
+                docker tag friendlyhello phucknguyen/friendlyhello
+                # push latest image
+                docker push phucknguyen/friendlyhello
 
     test-image-pushed:
         docker:
