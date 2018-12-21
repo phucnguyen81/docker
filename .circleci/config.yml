@@ -47,7 +47,7 @@ jobs:
                 docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:80
     test-image-pushed:
         docker:
-        - image: phucknguyen/friendlyhello:0.0.1
+        - image: phucknguyen/friendlyhello:0.0.2
         steps:
         - run:
             name: Test the app is run inside container
