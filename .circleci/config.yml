@@ -88,6 +88,12 @@ jobs:
         - run:
             name: Show services in the stack
             command: docker service ps getstartedlab_web
+        - run:
+            name: Take the app down
+            command: docker stack rm getstartedlab
+        - run:
+            name: Take down the swarm
+            command: docker swarm leave --force
 
 workflows:
     version: 2
