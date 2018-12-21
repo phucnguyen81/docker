@@ -70,6 +70,9 @@ jobs:
             name: Test the app is running inside container
             command: |
                 docker run -d -p 8080:8080 phucknguyen/friendlyhello
+                # test the app in running
+                # use the exposed port 8080 since exec runs the command inside the container
+                docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:8080
 
 workflows:
     version: 2
