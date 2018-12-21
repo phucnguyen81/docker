@@ -52,9 +52,9 @@ jobs:
         - run:
             name: Test the app is run inside container
             command: |
-                echo $(pwd)
                 ls /app/
-                #python app.py
+                cd /app/
+                python app.py
                 #curl --retry 10 --retry-connrefused http://localhost:80
 
 workflows:
