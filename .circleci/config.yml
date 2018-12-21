@@ -78,10 +78,13 @@ jobs:
         - checkout
         - setup_remote_docker
         - run:
-            name: Init service
+            name: Init service stack
             command: |
                 docker swarm init
                 docker stack deploy -c docker-compose.yml getstartedlab
+        - run:
+            name: Show service stack
+            command: |
                 docker service ls
                 docker service ps getstartedlab_web
                 docker container ls -q
