@@ -82,6 +82,9 @@ jobs:
             command: |
                 docker swarm init
                 docker stack deploy -c docker-compose.yml getstartedlab
+                docker service ls
+                docker service ps getstartedlab_web
+                docker container ls -q
 
 workflows:
     version: 2
