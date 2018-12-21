@@ -60,11 +60,12 @@ jobs:
 
     test-latest-image:
         docker:
-        - image: byrnedo/alpine-curl
+        #- image: byrnedo/alpine-curl
+        # TODO the container job gets cancelled, maybe because of the app launched on 8080?
         - image: phucknguyen/friendlyhello
         steps:
         - run:
-            name: Test the app is run inside container
+            name: Test the app is running inside container
             command: |
                 curl --retry 10 --retry-connrefused http://localhost:8080
 
