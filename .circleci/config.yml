@@ -28,23 +28,22 @@ jobs:
         - setup_remote_docker
         - checkout
         - run:
-            name: List checked out code
-            command: ls -a
+            name: Show current working directory
+            command: |
+                echo $(pwd)
+                ls -a
         - run:
             name: Build docker image
-            command: docker build -t friendlyhello .
-        - run:
-            name: See the image
-            command: docker image ls
+            command: |
+                docker build -t friendlyhello .
+                docker image ls
         - run:
             name: Run the image in detached mode
             command: |
                 # map port 4000 to the exposed port 80 (see Dockerfile)
                 docker run -d -p 4000:80 --name friendlyhello friendlyhello
-        - run:
-            name: Test the app in running inside the container
-            command: |
-                # use the exposed port 80 since the command is run inside the container
+                # test the app in running
+                # use the exposed port 80 since curl is run inside the container
                 docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:80
 
 workflows:
