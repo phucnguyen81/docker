@@ -51,11 +51,6 @@ jobs:
                 # login my docker hub account
                 docker login --username '$DOCKER_USERNAME' --password '$DOCKER_PASSWORD'
 
-                # map port 4000 to the exposed port 80 (see Dockerfile)
-                docker run -d -p 4000:80 --name friendlyhello friendlyhello
-                # test the app in running
-                # use the exposed port 80 since curl is run inside the container
-                docker exec friendlyhello curl --retry 10 --retry-connrefused http://localhost:80
     test-image-pushed:
         docker:
         - image: byrnedo/alpine-curl
